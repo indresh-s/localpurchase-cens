@@ -1,0 +1,56 @@
+{% extends "localpurchase/base.html" %}
+{% block bodysection %}  
+
+  <section>
+     <div class="container-fluid">
+        {% if records %}
+        <table class="table" id="idrecord">
+           <thead>
+            <tr>
+              <th>#</th>
+              <th>Ref. No.</th>
+              <th>Indentor Name</th>
+              <th>Date of Purchase</th>
+              <th>Requested by</th>
+              <th>Approval Status</th>
+              <th>Bill Submission</th>
+            </tr>
+          </thead>
+          <tbody>            
+            {% for record in records  %}
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td><a href="{% url 'single-record' %}?ref_no={{record.ref_no}}&id={{record.id}}">{{record.ref_no}}</a> </td>
+              <td>{{record.indentor_name}}</td>
+              <td>{{record.date_of_purchase}}</td>
+              <td>{{record.requested_by}}</td>
+              <td>{% if record.ao_approval == 'Approved' %}
+                  Approved <i class="fa-solid fa-check" style="color: #0066b3;"></i> 
+                  {% else %}
+                   {{record.ao_approval}}
+                  {% endif %}
+              </td>
+              <td>
+                {% if record.ao_approval == 'Approved' %}
+                 <a href="{% url 'bill-submission' %}?ref_no={{record.ref_no}}&indentor_name={{record.indentor_name}}&requested_by={{record.requested_by}}&coa={{record.coa}}" class="btn btn-sm btn-primary">Bill Submission </a>
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+          {% else %}
+          <div class="alert alert-warning">
+            No record
+          </div>
+        {% endif %}      
+     </div>
+  </section>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#idrecord').DataTable();
+});
+</script>
+<!---->
+  {% endblock bodysection %}

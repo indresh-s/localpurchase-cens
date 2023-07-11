@@ -1,0 +1,82 @@
+{% extends "localpurchase/base.html" %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% block bodysection %} 
+	Bill Submission List
+	{% if success %}
+	<div class="alert">
+		Updated successfuly..
+	</div>
+	{% endif %}
+	<style type="text/css">
+		.selected{
+			background-color: cadetblue !important;
+		}
+	</style>
+	<div id="example_wrapper" class="dataTables_wrapper ">
+	 <table id="example" class=" display dataTable table table-bordered  nowrap " aria-describedby="example_info"
+	  style="width:100%">
+          <thead>
+            <tr>
+              <th scope="col">Ref. No. </th>
+              <th scope="col">Indentor Name</th>
+              <th scope="col">CoA</th>      
+              <th scope="col">Bill No.</th>
+              <th scope="col">Bill Date</th>
+              <th scope="col">Source Name</th>
+              <th scope="col">Bill Amount</th>
+              <th scope="col">Particulars</th>
+            </tr>
+          </thead>
+          <tbody>        
+	{% for record in billrecords %}
+<tr>
+		<td>{{record.ref_no}}</td>
+		<td>{{record.indentor_name}}</td>
+		<th>{{record.coa}}</th>
+		<th>{{record.bill_no}}</th>
+		<td>{{record.bill_date}}</td>
+		<td>{{record.source_name}}</td>
+		<th>{{record.bill_amount}}</th>	
+		<th>{{record.particulars}}</th>		
+	</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'print',
+                text: 'Print all (not just selected)',
+                exportOptions: {
+                    modifier: {
+                        selected: null
+                    }
+                }
+            },
+            {
+                extend: 'excel',
+                text: 'Excel',
+            },
+            {
+                extend: 'csv',
+                text: 'CSV',
+                exportOptions: {
+                    columns: [ 3, 4, 5, 6, 7 ]
+                }
+            },
+            {
+                extend: 'copy',
+                text: 'Copy',
+            },
+
+        ],
+        select: true
+    } );
+} );
+</script>
+    {% endblock bodysection %}

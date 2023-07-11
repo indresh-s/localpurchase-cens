@@ -1,0 +1,12 @@
+.editorconfig
+.idea/
+venvlp/
+localpurchase/migrations/__pycache__/*
+localpurchase/migrations/
+localpurchase/__pycache__/*
+localpurchase/templatetags/__pycache__
+lpf/__pycache__/*
+media/images/
+pyvenv.cfg
+registeruser/__pycache__/*
+registeruser/migrations/

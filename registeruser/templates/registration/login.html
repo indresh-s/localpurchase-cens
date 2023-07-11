@@ -1,0 +1,33 @@
+{% extends "localpurchase/base.html" %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% block bodysection %} 
+
+
+<div class="">
+<div class="d-flex align-items-center justify-content-center">
+<div class="card ">
+  <div class="card-header">
+   <h5 class="card-title">Login Form</h5>
+  </div>
+  <div class="card-body">
+    {% if form.errors %}
+		<h4 class="alert alert-warning"> Invalid username or password </h4>
+	{% endif %}
+   <form action="{% url 'login' %}" method="post">
+	{% csrf_token %}
+	{{form.username |add_class:"form-control m-2" |attr:"placeholder:Username"}}
+	{{form.password |add_class:"form-control m-2"|attr:"placeholder:password" }}
+	<button type="submit">
+		Submit
+	</button>
+	</form>
+  </div>
+</div>
+</div>	
+</div>
+
+
+	
+
+{% endblock bodysection %}

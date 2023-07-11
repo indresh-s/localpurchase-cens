@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title>Local Purchase Email</title>
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+</head>
+<body>
+<h1>Local Purchase Form</h1>
+Ref No : {{ref_no}} <br>
+<a href="http://127.0.0.1:8000{{url}}?ref_no={{ref_no}}&pk={{pkid}}">click here for approval </a>
+<table id="customers">
+  <tr>
+    <th>Ref No. : </th>     <th>{{ref_no}}</th>
+  </tr>
+  <tr>
+    <td>indentor_name</td>
+    <td>{{indentor_name}}</td>
+  </tr>
+  <tr>
+    <td>your_email</td>
+    <td>{{your_email}}</td>
+  </tr>
+  <tr>
+    <td>requested_by</td>
+    <td>{{requested_by}} </td>
+  </tr>
+  <tr>
+    <td>purpose</td>
+    <td>{{purpose}} </td>
+  </tr>
+  <tr>
+    <td> item_to_purchase</td>
+    <td>
+      <ul>
+        {% for k,v in item_with_quantity.items %}
+          <li>{{k}} : {{v}}</li> 
+        {% endfor %}
+      </ul>
+    </td>
+  </tr>
+   <tr>
+    <td>Approximate Amount</td>
+    <td>{{approximate_amount}}</td>
+  </tr>
+  <tr>
+    <td>date_of_purchase </td>
+    <td>{{date_of_purchase}} </td>
+  </tr>
+  <tr>
+    <td>vendor_details </td>
+    <td>{{vendor_details}} </td>
+  </tr>
+  <tr>
+    <td>Localtion_of_purchase</td>
+    <td>{{localtion_of_purchase}} </td>
+  </tr>
+  <tr>
+    <td>CoA </td>
+    <td>{{coa}} </td>
+  </tr>
+  <tr>
+    <td> approximate_distance</td>
+    <td>{{approximate_distance}} </td>
+  </tr>
+  <tr>
+    <td>assigned_to </td>
+    <td>{{assigned_to}} </td>
+  </tr>
+    <tr>
+    <td>any_other_details </td>
+    <td>{{any_other_details}} </td>
+  </tr>
+</table>
+</body>
+</html>

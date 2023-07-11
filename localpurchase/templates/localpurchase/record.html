@@ -1,0 +1,8 @@
+{% extends "localpurchase/base.html" %}
+{% block bodysection %}  
+
+
+{{lprecord.ref_no}}
+<a href="{% url 'bill-submission' %}?ref_no={{lprecord.ref_no}}&indentor_name={{lprecord.indentor_name}}&requested_by={{lprecord.requested_by}}&coa={{lprecord.coa}}" class="btn btn-sm btn-primary">Bill Submission </a>
+
+{% endblock bodysection %}
