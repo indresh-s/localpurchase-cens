@@ -10,3 +10,4 @@ media/images/
 pyvenv.cfg
 registeruser/__pycache__/*
 registeruser/migrations/
+db.sqlite3
