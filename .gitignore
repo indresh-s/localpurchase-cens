@@ -11,3 +11,4 @@ pyvenv.cfg
 registeruser/__pycache__/*
 registeruser/migrations/
 db.sqlite3
+lpf/setting.py
