@@ -36,6 +36,7 @@ class LocalPurchaseModel(models.Model):
    updated_at = models.DateTimeField(auto_now=True)
    ao_approval = models.CharField(max_length=32,blank=True,null=True)
    ao_approval_remarks = models.TextField(blank=True,null=True)
+   purchase_to_made_by_admin = models.CharField(max_length=8,blank=True,null=True)
    
    def __str__(self):
       return f'LocalPurchase: {self.ref_no}  - indentor : {self.indentor_name} , requested by : {self.requested_by}'
