@@ -29,7 +29,7 @@
                 </div>  
                 <div class="col">
                     <label>Requester Email: </label>
-                    <input type="text" name="requester_email" required class="form-control">
+                    <input type="email" name="requester_email" required class="form-control">
                 </div>             
             </div>
             <div class="row">   
@@ -49,7 +49,6 @@
                     <th>Items to purchase</th> <th>Item Quantity</th><th>Add / Remove</th>
                     </tr>
                 </thead>
-                
                 <tbody id="addMoreItem">
                 <tr >
                 <td><input type="text" name="item_to_purchase[]" class="form-control"></td>
@@ -61,17 +60,23 @@
                 </tbody>
             </table>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label>Total Approximate Charges/Amount </label>
                     <input type="text" name="approximate_amount" class="form-control">
-                     <label> Location of purchase </label>
-                       <input type="text" name="localtion_of_purchase" class="form-control">
-                       <label>Approximate Distance </label>
-                    <input type="text" name="approximate_distance" class="form-control">
+                    <label>Whether arrangement for purchase to be made by Administration</label>
+                       <select class="form-select" name="purchase_to_made_by_admin">
+                           <option value="">--Select--</option>
+                           <option value="Yes">Yes</option>
+                           <option value="No">No</option>
+                       </select>
                 </div>                
-                <div class="col-md-9">
+                <div class="col-md-8">
+                    <label> Location of purchase </label>
+                       <input type="text" name="localtion_of_purchase" class="form-control">
                      <label>Vendor Details </label>
-                     <textarea name="vendor_details" rows="5" required class="form-control"></textarea>
+                     <textarea name="vendor_details" rows="3" required class="form-control"></textarea>
+                     <label>Approximate Distance </label>
+                    <input type="text" name="approximate_distance" class="form-control">
                 </div>
             </div>
             <hr>

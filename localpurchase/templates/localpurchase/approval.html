@@ -19,6 +19,9 @@
 		<tr>
 			<td>Requested_by</td><td>{{data.requested_by}}</td>
 		</tr>
+    <tr>
+      <td>requester_email</td><td>{{data.requester_email}}</td>
+    </tr>
 		<tr>
 			<td>purpose</td><td>{{data.purpose}}</td>
 		</tr>
@@ -26,9 +29,11 @@
 			<td><b>item_to_purchase </b>
 			</td>
 			<td>
+        <ul class="list">
 				{% for k,v in itms.items %}
-          {{k}} : {{v}}
+         <li class="list-item"> {{k}} : {{v}}</li>
         {% endfor %}
+      </ul>
 			</td>
 		</tr>
 		<tr>
@@ -58,6 +63,7 @@
   <div class="card border-warning my-3" >
           <div class="card-header">
             <h4 class="text-center"> Approval Status : <span class="text-bold text-success"> {{data.ao_approval}} </span> </h4> 
+            <p>Amount Sanctioned :<span class="text-bold text-primary"> {{data.amount_approved}} </span>  </p>
             <div class="card-body">
               <form action="{% url 'approval'  %}" method="POST">
           {% csrf_token %}  
@@ -94,9 +100,8 @@
                   Amount Sanctioned :
                 </td>
                 <td>
-                  <input type="text" id="id_amt_sanctioned"  class="form-control disabled" required="required" name="amt_sanctioned" 
-                  readonly="readonly" value="{{data.approximate_amount}}" >    
-                  
+                  <input type="text" id="id_amt_sanctioned"  class="form-control disabled" required="required" name="amount_approved" 
+                  readonly="readonly" value=" {% if data.amount_approved == None %}  {{data.approximate_amount}} {% else %} {{ data.amount_approved }} {% endif %} " >
                 </td>
                 <td>
                   <button type="button" id="editAmountBtn" title="Edit" class="btn btn-sm btn-success "> 
@@ -106,7 +111,7 @@
               </tr>
               <tr>
                 <td colspan="5">
-                  <textarea class="form-control" name="ao_approval_remarks" placeholder="Remarks (if any)"></textarea>
+                  <textarea class="form-control" name="ao_approval_remarks" placeholder="Remarks (if any)">{{data.ao_approval_remarks}}</textarea>
                 </td>
               </tr>
             </thead>
@@ -121,9 +126,19 @@
           <input type="hidden" name="ref_no" value="{{data.ref_no}}">
           <input type="hidden" name="user_email" value="{{data.your_email}}">
           <input type="hidden" name="requested_by" value="{{data.requested_by}}">
+          <input type="hidden" name="requester_email" value="{{data.requester_email}}">
           <input type="hidden" name="indentor_name" value="{{data.indentor_name}}">
-          <input type="submit" class="btn btn-primary form-control m-2" value="APPROVE" name="">   
-          <a href="{% url 'index'  %}" class="btn btn-danger  form-control  m-2">cancel</a>
+          <div class="row">
+            <div class="col-md-2"> </div>
+           <div class="col-md-4">
+            <a href="{% url 'index'  %}" class="btn btn-warning  form-control  m-2">Cancel</a>
+           </div>
+            <div class="col-md-4">
+              <input type="submit" class="btn btn-success form-control m-2" value="APPROVE" name=""> 
+           </div>
+          </div>
+            <div class="col-md-2"> </div>
+          
         </form>
             </div>
           </div>

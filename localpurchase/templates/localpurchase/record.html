@@ -3,6 +3,68 @@
 
 
 {{lprecord.ref_no}}
+
+
+	<table class="table table-bordered table-striped ">
+	<thead>
+		<tr>
+			<th>Reference No. : </th> <th>{{lprecord.ref_no}}</th>
+		</tr>		
+	</thead>
+	<tbody>
+		<tr>
+			<td>indentor_name</td><td>{{lprecord.indentor_name}}</td>
+		</tr>
+		<tr>
+			<td>indentor_email</td><td>{{lprecord.your_email}}</td>
+		</tr>
+		<tr>
+			<td>Requested_by</td><td>{{lprecord.requested_by}}</td>
+		</tr>
+    <tr>
+      <td>requester_email</td><td>{{lprecord.requester_email}}</td>
+    </tr>
+		<tr>
+			<td>purpose</td><td>{{lprecord.purpose}}</td>
+		</tr>
+		<tr>
+			<td><b>item_to_purchase </b>
+			</td>
+			<td>
+				{{lprecord.item_to_purchase}}
+
+        <ul class="list">
+				{% for k,v in itms.items %}
+         <li class="list-item"> {{k}} : {{v}}</li>
+        {% endfor %}
+      </ul>
+			</td>
+		</tr>
+		<tr>
+			<td>date_of_purchase</td><td>{{lprecord.date_of_purchase}}</td>
+		</tr>
+		<tr>
+			<td>vendor_details</td><td>{{lprecord.vendor_details}}</td>
+		</tr>
+		<tr>
+			<td>localtion_of_purchase</td><td>{{lprecord.localtion_of_purchase}}</td>
+		</tr>
+		<tr>
+			<td>coa</td><td>{{lprecord.coa}}</td>
+		</tr>
+		<tr>
+			<td>approximate_distance</td><td>{{lprecord.approximate_distance}}</td>
+		</tr>
+		<tr>
+			<td>assigned_to</td><td>{{lprecord.assigned_to}}</td>
+		</tr>
+		<tr>
+			<td>Submission date:{{lprecord.created_at}}<br></td><td>updated_at <br>{{lprecord.updated_at}}</td>
+		</tr>
+	</tbody>
+</table>
+
+
 <a href="{% url 'bill-submission' %}?ref_no={{lprecord.ref_no}}&indentor_name={{lprecord.indentor_name}}&requested_by={{lprecord.requested_by}}&coa={{lprecord.coa}}" class="btn btn-sm btn-primary">Bill Submission </a>
 
 {% endblock bodysection %}
