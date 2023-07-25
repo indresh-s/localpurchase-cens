@@ -44,7 +44,7 @@ def viewSingleRecord(request):
         context = {
         'lprecord':lprecord
         }
-        print(f"LPRECORD : {lprecord}")
+#        print(f"LPRECORD : {lprecord}")
         return render(request,'localpurchase/record.html',context)
 
 ############################ Add Record ########################################
@@ -154,10 +154,10 @@ def add(request):
         print(item_with_quantity)
         lpm.item_with_quantity = item_with_quantity
         savedmsg = lpm.save()
-        print ("Saved Message : "  + str(savedmsg))
-        print(type(savedmsg))
-        print ("Admin Message : "  + str(send_msg_admin))
-        print ("Emailed Message : " + str(send_msg_user))
+#        print ("Saved Message : "  + str(savedmsg))
+ #       print(type(savedmsg))
+  #      print ("Admin Message : "  + str(send_msg_admin))
+   #     print ("Emailed Message : " + str(send_msg_user))
         return render(request,'localpurchase/add.html',{
                 'form': LocalPurchaseForm(),
                 'success': True
@@ -191,12 +191,12 @@ def approval(request):
         'data':data,
         'itm_qnts':itm_qnts
         }
-        print(itms)
-        print(type(itms))
-        print(context)
-        print("--Item quantity--")
-        print(itms)
-        print("---jdata--")
+#        print(itms)
+ #       print(type(itms))
+  #      print(context)
+   #     print("--Item quantity--")
+    #    print(itms)
+     #   print("---jdata--")
         # print(jdata)
         #return JsonResponse({'jdata':'test'})
         return render(request, 'localpurchase/approval.html',context)
@@ -215,9 +215,9 @@ def approval(request):
         requester_email = request.POST['requester_email']
         itm_with_qty = zip(itm_name,itm_qt)
         itm_with_qty = dict(itm_with_qty)
-        print(">>>>>>"+id+"<<<<<<<<")
-        print("-----dic----")
-        print(itm_with_qty)
+#        print(">>>>>>"+id+"<<<<<<<<")
+ #       print("-----dic----")
+  #      print(itm_with_qty)
         lpfapprove_update = LocalPurchaseModel.objects.get(id=id)
         lpfapprove_update.ao_approval = ao_approval
         lpfapprove_update.amount_approved = amount_approved
@@ -239,7 +239,7 @@ def approval(request):
         subject = "Approval - Local Purchase Form: " + ref_no,
         message = 'Approval status for your indent with ref_No.' + ref_no + 'is : '+ao_approval,
         from_email = settings.EMAIL_HOST_USER,
-        recipient_list = [settings.EMAIL_ADMIN_CENS,'indresh@cens.res.in',user_email,requester_email],
+        recipient_list = [settings.EMAIL_ADMIN_CENS,settings.EMAIL_BILL_SUBMITER,user_email,requester_email],
         html_message = html_code
         )
         ### / Send Email ###
@@ -255,14 +255,14 @@ def bill_submission(request):
         form = LPBillSubmissionForm()
         ref_no = request.GET['ref_no']
         context ={}
-        print("Context <<<<<before :"+str(context))
+        #print("Context <<<<<before :"+str(context))
         existss = LPBillSubmissionModel.objects.filter(ref_no=ref_no).exists()
-        print(">>>Exists<<<")
-        print(">>>>>Exists<<<<<")
-        print(existss)
-        print(">>>>>Exists<<<<<")
+        #print(">>>Exists<<<")
+        #print(">>>>>Exists<<<<<")
+        #print(existss)
+        #print(">>>>>Exists<<<<<")
         if existss:
-            print(">>>>>Context<<<<<")
+         #   print(">>>>>Context<<<<<")
             return render(request,'localpurchase/bill-submission-list.html',{
                 'billrecords':LPBillSubmissionModel.objects.all()
             })
@@ -280,7 +280,7 @@ def bill_submission(request):
                 })              
 
     elif request.method == 'POST':
-        print(">>>>>>>>POSt bills<<<<<<<<<<<<")
+        #print(">>>>>>>>POSt bills<<<<<<<<<<<<")
         bill_no = request.POST.getlist('bill_no[]')
         bill_date = request.POST.getlist('bill_date[]')
         bill_amount = request.POST.getlist('bill_amount[]')
@@ -303,9 +303,9 @@ def bill_submission(request):
                 particulars=particulars[i]
                 )
             lpbs.save()
-            print(i)
-            print("loop")
-        print(">>>>>>>>POS<<<<<<<<<<<<")
+         #   print(i)
+        #    print("loop")
+       # print(">>>>>>>>POS<<<<<<<<<<<<")
         return render(request,'localpurchase/bill-submission-list.html',{
                 'billrecords':LPBillSubmissionModel.objects.all()
             })
