@@ -66,6 +66,7 @@ def add(request):
         approximate_distance=request.POST['approximate_distance']
         assigned_to=request.POST['assigned_to']
         any_other_details=request.POST['any_other_details']
+        purchase_to_made_by_admin = request.POST['purchase_to_made_by_admin']
         ref_no = checkRefNo()
         item_with_quantity = zip(item_to_purchase, item_quantity)
         item_with_quantity = dict(item_with_quantity);
@@ -86,7 +87,8 @@ def add(request):
             assigned_to=assigned_to,
             any_other_details=any_other_details,
             approximate_amount = approximate_amount,
-            item_with_quantity = item_with_quantity
+            item_with_quantity = item_with_quantity,
+            purchase_to_made_by_admin = purchase_to_made_by_admin
             )
         pkid = lpm.pk
             ### To Send Email ###
@@ -106,6 +108,7 @@ def add(request):
             'approximate_amount':approximate_amount,
             'assigned_to':assigned_to,
             'any_other_details': any_other_details,
+            'purchase_to_made_by_admin':purchase_to_made_by_admin,
             'pkid':pkid,
             'url': reverse('approval')
             })
@@ -125,6 +128,7 @@ def add(request):
             'approximate_amount':approximate_amount,
             'assigned_to':assigned_to,
             'any_other_details': any_other_details,
+            'purchase_to_made_by_admin':purchase_to_made_by_admin,
             'pkid':pkid,
             'url': reverse('approval')
             })
@@ -205,9 +209,10 @@ def approval(request):
         itm_name = request.POST.getlist('itm[]')
         itm_qt = request.POST.getlist('itm_qnt[]')
         ao_approval_remarks = request.POST['ao_approval_remarks']
-        amount_approved = request.POST['amt_sanctioned']
+        amount_approved = request.POST['amount_approved']
         requested_by = request.POST['requested_by']
         indentor_name = request.POST['indentor_name']
+        requester_email = request.POST['requester_email']
         itm_with_qty = zip(itm_name,itm_qt)
         itm_with_qty = dict(itm_with_qty)
         print(">>>>>>"+id+"<<<<<<<<")
