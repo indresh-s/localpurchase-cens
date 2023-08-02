@@ -138,7 +138,7 @@ def add(request):
         subject = "Local Purchase Form: " + ref_no,
         message = 'You Have New Submission kindly go through details for approval',
         from_email = settings.EMAIL_HOST_USER,
-        recipient_list = [settings.EMAIL_ADMIN_CENS,'indresh@cens.res.in'],
+        recipient_list = [settings.EMAIL_ADMIN_ID, settings.EMAIL_DEVELOPER_ID],
         html_message = html_admin
         )
         send_msg_user = send_mail(
@@ -239,7 +239,7 @@ def approval(request):
         subject = "Approval - Local Purchase Form: " + ref_no,
         message = 'Approval status for your indent with ref_No.' + ref_no + 'is : '+ao_approval,
         from_email = settings.EMAIL_HOST_USER,
-        recipient_list = [settings.EMAIL_ADMIN_CENS,settings.EMAIL_BILL_SUBMITER,user_email,requester_email],
+        recipient_list = [settings.EMAIL_ADMIN_ID,settings.EMAIL_DEVELOPER_ID,settings.EMAIL_BILL_SUBMITER,user_email,requester_email],
         html_message = html_code
         )
         ### / Send Email ###

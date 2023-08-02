@@ -100,18 +100,15 @@
                   Amount Sanctioned :
                 </td>
                 <td>
-                  <input type="text" id="id_amt_sanctioned"  class="form-control disabled" required="required" name="amount_approved" 
-                  readonly="readonly" value=" {% if data.amount_approved == None %}  {{data.approximate_amount}} {% else %} {{ data.amount_approved }} {% endif %} " >
+                  <input type="text" id="id_amt_sanctioned"  class="form-control" required="required" name="amount_approved" value="{% if data.amount_approved == None %}{{data.approximate_amount}}{% else %}{{data.amount_approved}}{% endif %}" >
                 </td>
                 <td>
-                  <button type="button" id="editAmountBtn" title="Edit" class="btn btn-sm btn-success "> 
-                    <i class="fas fa-edit"></i> 
-                  </button>
+                  
                 </td>
               </tr>
               <tr>
                 <td colspan="5">
-                  <textarea class="form-control" name="ao_approval_remarks" placeholder="Remarks (if any)">{{data.ao_approval_remarks}}</textarea>
+                  <textarea class="form-control" name="ao_approval_remarks" placeholder="Remarks (if any)">{% if data.ao_approval_remarks != None %}{{data.ao_approval_remarks}}{% endif %}</textarea>
                 </td>
               </tr>
             </thead>
@@ -152,10 +149,7 @@
       $("#itmTable").on('click','.btnDelete',function(){
          $(this).closest('tr').remove();
       });    
-
-      $('#editAmountBtn').click(function () {
-      $('#id_amt_sanctioned').removeAttr('readonly').focus().select();
-      })
+      
   });
 </script>
  <!-- /Ajax -->
